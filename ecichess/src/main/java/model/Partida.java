@@ -42,9 +42,7 @@ public class Partida  implements java.io.Serializable {
        this.resultado = resultado;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="idPartidas", nullable=false)
     public int getIdPartidas() {
         return this.idPartidas;

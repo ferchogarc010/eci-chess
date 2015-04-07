@@ -37,8 +37,8 @@ public class Torneo  implements java.io.Serializable {
      private String tipo;
      private Date fechaInicio;
      private Date fechaFin;
-     private Set<Jugador> jugadoreses = new HashSet(0);
-     private Set<Ronda> rondases = new HashSet(0);
+     private Set<Jugador> jugadoreses = new HashSet<Jugador>(0);
+     private Set<Ronda> rondases = new HashSet<Ronda>(0);
 
     public Torneo() {
     }
@@ -166,20 +166,20 @@ public class Torneo  implements java.io.Serializable {
     @JoinTable(name="participaciones", schema="public", joinColumns = { 
         @JoinColumn(name="Torneos_idTorneos", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="Jugadores_codigoFide", nullable=false, updatable=false) })
-    public Set getJugadoreses() {
+    public Set<Jugador> getJugadoreses() {
         return this.jugadoreses;
     }
     
-    public void setJugadoreses(Set jugadoreses) {
+    public void setJugadoreses(Set<Jugador> jugadoreses) {
         this.jugadoreses = jugadoreses;
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="torneos")
-    public Set getRondases() {
+    public Set<Ronda> getRondases() {
         return this.rondases;
     }
     
-    public void setRondases(Set rondases) {
+    public void setRondases(Set<Ronda> rondases) {
         this.rondases = rondases;
     }
 

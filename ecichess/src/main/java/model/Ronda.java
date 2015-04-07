@@ -31,7 +31,7 @@ public class Ronda  implements java.io.Serializable {
      private RondaId id;
      private Torneo torneos;
      private Date fecha;
-     private Set<Partida> partidases = new HashSet(0);
+     private HashSet<Partida> partidases = new HashSet<Partida>(0);
 
     public Ronda() {
     }
@@ -41,7 +41,7 @@ public class Ronda  implements java.io.Serializable {
         this.id = id;
         this.torneos = torneos;
     }
-    public Ronda(RondaId id, Torneo torneos, Date fecha, Set<Partida> partidases) {
+    public Ronda(RondaId id, Torneo torneos, Date fecha, HashSet<Partida> partidases) {
        this.id = id;
        this.torneos = torneos;
        this.fecha = fecha;
@@ -81,11 +81,11 @@ public class Ronda  implements java.io.Serializable {
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="rondas")
-    public Set getPartidases() {
+    public HashSet<Partida> getPartidases() {
         return this.partidases;
     }
     
-    public void setPartidases(Set partidases) {
+    public void setPartidases(HashSet<Partida> partidases) {
         this.partidases = partidases;
     }
 

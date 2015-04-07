@@ -7,10 +7,10 @@
     <property name="hibernate.connection.url">jdbc:postgresql://ec2-107-21-102-69.compute-1.amazonaws.com:5432/de0abau21fca08?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory</property>
     <property name="hibernate.connection.username">serzwfcrbobluo</property>
     <property name="hibernate.connection.password">k8HnxuJk11WaGJCKzMCJIwXdAV</property>
-    <mapping class="model.Rondas"/>
-    <mapping class="model.RondasId"/>
-    <mapping class="model.Jugadores"/>
-    <mapping class="model.Partidas"/>
-    <mapping class="model.Torneos"/>
+    <mapping class="model.Ronda"/>
+    <mapping class="model.RondaId"/>
+    <mapping class="model.Jugador"/>
+    <mapping class="model.Partida"/>
+    <mapping class="model.Torneo"/>
   </session-factory>
 </hibernate-configuration>
