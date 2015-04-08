@@ -1,10 +1,8 @@
 package model;
-// Generated Apr 6, 2015 11:00:35 PM by Hibernate Tools 4.3.1
+// Generated Apr 7, 2015 8:49:04 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -13,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +28,7 @@ public class Ronda  implements java.io.Serializable {
      private RondaId id;
      private Torneo torneos;
      private Date fecha;
-     private HashSet<Partida> partidases = new HashSet<Partida>(0);
+     
 
     public Ronda() {
     }
@@ -41,17 +38,17 @@ public class Ronda  implements java.io.Serializable {
         this.id = id;
         this.torneos = torneos;
     }
-    public Ronda(RondaId id, Torneo torneos, Date fecha, HashSet<Partida> partidases) {
+    public Ronda(RondaId id, Torneo torneos, Date fecha) {
        this.id = id;
        this.torneos = torneos;
        this.fecha = fecha;
-       this.partidases = partidases;
+       
     }
    
     @EmbeddedId
     @AttributeOverrides( {
-        @AttributeOverride(name="idRondas", column=@Column(name="idRondas", nullable=false) ), 
-        @AttributeOverride(name="torneosIdTorneos", column=@Column(name="Torneos_idTorneos", nullable=false) ) } )
+        @AttributeOverride(name="idrondas", column=@Column(name="idrondas", nullable=false) ), 
+        @AttributeOverride(name="torneosIdtorneos", column=@Column(name="torneos_idtorneos", nullable=false) ) } )
     public RondaId getId() {
         return this.id;
     }
@@ -61,7 +58,7 @@ public class Ronda  implements java.io.Serializable {
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Torneos_idTorneos", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="torneos_idtorneos", nullable=false, insertable=false, updatable=false)
     public Torneo getTorneos() {
         return this.torneos;
     }
@@ -79,19 +76,6 @@ public class Ronda  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="rondas")
-    public HashSet<Partida> getPartidases() {
-        return this.partidases;
-    }
-    
-    public void setPartidases(HashSet<Partida> partidases) {
-        this.partidases = partidases;
-    }
-
-
-
-
 }
 
 

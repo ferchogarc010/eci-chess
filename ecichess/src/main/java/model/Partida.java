@@ -1,5 +1,5 @@
 package model;
-// Generated Apr 6, 2015 11:00:35 PM by Hibernate Tools 4.3.1
+// Generated Apr 7, 2015 8:49:04 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -21,9 +21,9 @@ import javax.persistence.Table;
 public class Partida  implements java.io.Serializable {
 
 
-     private int idPartidas;
-     private Jugador jugadoresByJugadoresCodigoFide1;
-     private Jugador jugadoresByJugadoresCodigoFide;
+     private int idpartidas;
+     private Jugador jugadoresByJugadoresCodigofide1;
+     private Jugador jugadoresByJugadoresCodigofide;
      private Ronda rondas;
      private String resultado;
 
@@ -31,51 +31,51 @@ public class Partida  implements java.io.Serializable {
     }
 
 	
-    public Partida(int idPartidas) {
-        this.idPartidas = idPartidas;
+    public Partida(int idpartidas) {
+        this.idpartidas = idpartidas;
     }
-    public Partida(int idPartidas,Jugador jugadoresByJugadoresCodigoFide1,Jugador jugadoresByJugadoresCodigoFide, Ronda rondas, String resultado) {
-       this.idPartidas = idPartidas;
-       this.jugadoresByJugadoresCodigoFide1 = jugadoresByJugadoresCodigoFide1;
-       this.jugadoresByJugadoresCodigoFide = jugadoresByJugadoresCodigoFide;
+    public Partida(int idpartidas, Jugador jugadoresByJugadoresCodigofide1, Jugador jugadoresByJugadoresCodigofide, Ronda rondas, String resultado) {
+       this.idpartidas = idpartidas;
+       this.jugadoresByJugadoresCodigofide1 = jugadoresByJugadoresCodigofide1;
+       this.jugadoresByJugadoresCodigofide = jugadoresByJugadoresCodigofide;
        this.rondas = rondas;
        this.resultado = resultado;
     }
    
     @Id 
-    @Column(name="idPartidas", nullable=false)
-    public int getIdPartidas() {
-        return this.idPartidas;
+    @Column(name="idpartidas", unique=true, nullable=false)
+    public int getIdpartidas() {
+        return this.idpartidas;
     }
     
-    public void setIdPartidas(int idPartidas) {
-        this.idPartidas = idPartidas;
+    public void setIdpartidas(int idpartidas) {
+        this.idpartidas = idpartidas;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Jugadores_codigoFide1")
-    public Jugador getJugadoresByJugadoresCodigoFide1() {
-        return this.jugadoresByJugadoresCodigoFide1;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="jugadores_codigofide1")
+    public Jugador getJugadoresByJugadoresCodigofide1() {
+        return this.jugadoresByJugadoresCodigofide1;
     }
     
-    public void setJugadoresByJugadoresCodigoFide1(Jugador jugadoresByJugadoresCodigoFide1) {
-        this.jugadoresByJugadoresCodigoFide1 = jugadoresByJugadoresCodigoFide1;
+    public void setJugadoresByJugadoresCodigofide1(Jugador jugadoresByJugadoresCodigofide1) {
+        this.jugadoresByJugadoresCodigofide1 = jugadoresByJugadoresCodigofide1;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Jugadores_codigoFide")
-    public Jugador getJugadoresByJugadoresCodigoFide() {
-        return this.jugadoresByJugadoresCodigoFide;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="jugadores_codigofide")
+    public Jugador getJugadoresByJugadoresCodigofide() {
+        return this.jugadoresByJugadoresCodigofide;
     }
     
-    public void setJugadoresByJugadoresCodigoFide(Jugador jugadoresByJugadoresCodigoFide) {
-        this.jugadoresByJugadoresCodigoFide = jugadoresByJugadoresCodigoFide;
+    public void setJugadoresByJugadoresCodigofide(Jugador jugadoresByJugadoresCodigofide) {
+        this.jugadoresByJugadoresCodigofide = jugadoresByJugadoresCodigofide;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( { 
-        @JoinColumn(name="Rondas_idRondas", referencedColumnName="idRondas"), 
-        @JoinColumn(name="Rondas_Torneos_idTorneos", referencedColumnName="Torneos_idTorneos") } )
+        @JoinColumn(name="rondas_idrondas", referencedColumnName="idrondas"), 
+        @JoinColumn(name="rondas_torneos_idtorneos", referencedColumnName="torneos_idtorneos") } )
     public Ronda getRondas() {
         return this.rondas;
     }

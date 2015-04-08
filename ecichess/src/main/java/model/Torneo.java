@@ -1,5 +1,5 @@
 package model;
-// Generated Apr 6, 2015 11:00:35 PM by Hibernate Tools 4.3.1
+// Generated Apr 7, 2015 8:49:04 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
 public class Torneo  implements java.io.Serializable {
 
 
-     private int idTorneos;
+     private int idtorneos;
      private String nombre;
      private String director;
      private String organizador;
@@ -35,20 +35,20 @@ public class Torneo  implements java.io.Serializable {
      private String lugar;
      private String federacion;
      private String tipo;
-     private Date fechaInicio;
-     private Date fechaFin;
-     private Set<Jugador> jugadoreses = new HashSet<Jugador>(0);
-     private Set<Ronda> rondases = new HashSet<Ronda>(0);
+     private Date fechainicio;
+     private Date fechafin;
+     private HashSet<Jugador> jugadoreses = new HashSet<Jugador>(0);
+     
 
     public Torneo() {
     }
 
 	
-    public Torneo(int idTorneos) {
-        this.idTorneos = idTorneos;
+    public Torneo(int idtorneos) {
+        this.idtorneos = idtorneos;
     }
-    public Torneo(int idTorneos, String nombre, String director, String organizador, String arbitro, String lugar, String federacion, String tipo, Date fechaInicio, Date fechaFin, Set<Jugador> jugadoreses, Set<Ronda> rondases) {
-       this.idTorneos = idTorneos;
+    public Torneo(int idtorneos, String nombre, String director, String organizador, String arbitro, String lugar, String federacion, String tipo, Date fechainicio, Date fechafin, HashSet<Jugador> jugadoreses) {
+       this.idtorneos = idtorneos;
        this.nombre = nombre;
        this.director = director;
        this.organizador = organizador;
@@ -56,20 +56,20 @@ public class Torneo  implements java.io.Serializable {
        this.lugar = lugar;
        this.federacion = federacion;
        this.tipo = tipo;
-       this.fechaInicio = fechaInicio;
-       this.fechaFin = fechaFin;
+       this.fechainicio = fechainicio;
+       this.fechafin = fechafin;
        this.jugadoreses = jugadoreses;
-       this.rondases = rondases;
+       
     }
    
     @Id 
-    @Column(name="idTorneos", nullable=false)
-    public int getIdTorneos() {
-        return this.idTorneos;
+    @Column(name="idtorneos", unique=true, nullable=false)
+    public int getIdtorneos() {
+        return this.idtorneos;
     }
     
-    public void setIdTorneos(int idTorneos) {
-        this.idTorneos = idTorneos;
+    public void setIdtorneos(int idtorneos) {
+        this.idtorneos = idtorneos;
     }
 
     
@@ -143,48 +143,36 @@ public class Torneo  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="fechaInicio", length=13)
-    public Date getFechaInicio() {
-        return this.fechaInicio;
+    @Column(name="fechainicio", length=13)
+    public Date getFechainicio() {
+        return this.fechainicio;
     }
     
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFechainicio(Date fechainicio) {
+        this.fechainicio = fechainicio;
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="fechaFin", length=13)
-    public Date getFechaFin() {
-        return this.fechaFin;
+    @Column(name="fechafin", length=13)
+    public Date getFechafin() {
+        return this.fechafin;
     }
     
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechafin(Date fechafin) {
+        this.fechafin = fechafin;
     }
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="participaciones", schema="public", joinColumns = { 
-        @JoinColumn(name="Torneos_idTorneos", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="Jugadores_codigoFide", nullable=false, updatable=false) })
-    public Set<Jugador> getJugadoreses() {
+        @JoinColumn(name="torneos_idtorneos", nullable=false, updatable=false) }, inverseJoinColumns = { 
+        @JoinColumn(name="jugadores_codigofide", nullable=false, updatable=false) })
+    public HashSet<Jugador> getJugadoreses() {
         return this.jugadoreses;
     }
     
-    public void setJugadoreses(Set<Jugador> jugadoreses) {
+    public void setJugadoreses(HashSet<Jugador> jugadoreses) {
         this.jugadoreses = jugadoreses;
     }
-
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="torneos")
-    public Set<Ronda> getRondases() {
-        return this.rondases;
-    }
-    
-    public void setRondases(Set<Ronda> rondases) {
-        this.rondases = rondases;
-    }
-
-
-
 
 }
 

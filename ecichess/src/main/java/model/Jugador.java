@@ -1,6 +1,5 @@
 package model;
-// Generated Apr 6, 2015 11:00:35 PM by Hibernate Tools 4.3.1
-
+// Generated Apr 7, 2015 8:49:04 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -18,37 +17,39 @@ import javax.persistence.Table;
 public class Jugador  implements java.io.Serializable {
 
 
-     private int codigoFide;
+     private int codigofide;
      private String apellidos;
      private String nombres;
-     private Integer codigoNacional;
+     private Integer codigonacional;
      private String pais;
-     private Integer anioNacimiento;
+     private Integer anionacimiento;
      
+
     public Jugador() {
     }
 
 	
-    public Jugador(int codigoFide) {
-        this.codigoFide = codigoFide;
+    public Jugador(int codigofide) {
+        this.codigofide = codigofide;
     }
-    public Jugador(int codigoFide, String apellidos, String nombres, Integer codigoNacional, String pais, Integer anioNacimiento) {
-       this.codigoFide = codigoFide;
+    public Jugador(int codigofide, String apellidos, String nombres, Integer codigonacional, String pais, Integer anionacimiento) {
+       this.codigofide = codigofide;
        this.apellidos = apellidos;
        this.nombres = nombres;
-       this.codigoNacional = codigoNacional;
+       this.codigonacional = codigonacional;
        this.pais = pais;
-       this.anioNacimiento = anioNacimiento;
+       this.anionacimiento = anionacimiento;
+       
     }
    
     @Id 
-    @Column(name="codigoFide", nullable=false)
-    public int getCodigoFide() {
-        return this.codigoFide;
+    @Column(name="codigofide", unique=true, nullable=false)
+    public int getCodigofide() {
+        return this.codigofide;
     }
     
-    public void setCodigoFide(int codigoFide) {
-        this.codigoFide = codigoFide;
+    public void setCodigofide(int codigofide) {
+        this.codigofide = codigofide;
     }
 
     
@@ -72,13 +73,13 @@ public class Jugador  implements java.io.Serializable {
     }
 
     
-    @Column(name="codigoNacional")
-    public Integer getCodigoNacional() {
-        return this.codigoNacional;
+    @Column(name="codigonacional")
+    public Integer getCodigonacional() {
+        return this.codigonacional;
     }
     
-    public void setCodigoNacional(Integer codigoNacional) {
-        this.codigoNacional = codigoNacional;
+    public void setCodigonacional(Integer codigonacional) {
+        this.codigonacional = codigonacional;
     }
 
     
@@ -92,13 +93,13 @@ public class Jugador  implements java.io.Serializable {
     }
 
     
-    @Column(name="anioNacimiento")
-    public Integer getAnioNacimiento() {
-        return this.anioNacimiento;
+    @Column(name="anionacimiento")
+    public Integer getAnionacimiento() {
+        return this.anionacimiento;
     }
     
-    public void setAnioNacimiento(Integer anioNacimiento) {
-        this.anioNacimiento = anioNacimiento;
+    public void setAnionacimiento(Integer anionacimiento) {
+        this.anionacimiento = anionacimiento;
     }
 
 }
