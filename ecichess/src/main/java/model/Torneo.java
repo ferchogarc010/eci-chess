@@ -37,7 +37,7 @@ public class Torneo  implements java.io.Serializable {
      private String tipo;
      private Date fechainicio;
      private Date fechafin;
-     private HashSet<Jugador> jugadoreses = new HashSet<Jugador>(0);
+     private Set<Jugador> jugadoreses = new HashSet<Jugador>(0);
      
 
     public Torneo() {
@@ -47,7 +47,7 @@ public class Torneo  implements java.io.Serializable {
     public Torneo(int idtorneos) {
         this.idtorneos = idtorneos;
     }
-    public Torneo(int idtorneos, String nombre, String director, String organizador, String arbitro, String lugar, String federacion, String tipo, Date fechainicio, Date fechafin, HashSet<Jugador> jugadoreses) {
+    public Torneo(int idtorneos, String nombre, String director, String organizador, String arbitro, String lugar, String federacion, String tipo, Date fechainicio, Date fechafin, Set<Jugador> jugadoreses) {
        this.idtorneos = idtorneos;
        this.nombre = nombre;
        this.director = director;
@@ -166,11 +166,11 @@ public class Torneo  implements java.io.Serializable {
     @JoinTable(name="participaciones", schema="public", joinColumns = { 
         @JoinColumn(name="torneos_idtorneos", nullable=false, updatable=false) }, inverseJoinColumns = { 
         @JoinColumn(name="jugadores_codigofide", nullable=false, updatable=false) })
-    public HashSet<Jugador> getJugadoreses() {
+    public Set<Jugador> getJugadoreses() {
         return this.jugadoreses;
     }
     
-    public void setJugadoreses(HashSet<Jugador> jugadoreses) {
+    public void setJugadoreses(Set<Jugador> jugadoreses) {
         this.jugadoreses = jugadoreses;
     }
 
