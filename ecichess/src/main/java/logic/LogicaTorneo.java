@@ -34,4 +34,26 @@ public class LogicaTorneo {
         }
         return list;
     }
+
+    public void modificarTorneo(Torneo t, int id) {
+        Torneo oldTorneo = torneoRepository.findOne(id);
+        oldTorneo.setArbitro(t.getArbitro());
+        oldTorneo.setDirector(t.getDirector());
+        oldTorneo.setFechafin(t.getFechafin());
+        oldTorneo.setFechainicio(t.getFechainicio());
+        oldTorneo.setFederacion(t.getFederacion());
+        oldTorneo.setLugar(t.getLugar());
+        oldTorneo.setNombre(t.getNombre());
+        oldTorneo.setOrganizador(t.getOrganizador());
+        oldTorneo.setTipo(t.getTipo());
+        torneoRepository.save(oldTorneo);
+    }
+
+    public Torneo getTorneoById(int id) {
+        return torneoRepository.findOne(id);
+    }
+
+    public void deleteTorneo(int id) {
+        torneoRepository.delete(id);
+    }
 }

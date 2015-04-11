@@ -41,7 +41,6 @@ public class LogicaJugador {
     
     public void modificarJugador(Jugador j, int id){
         Jugador oldJugador = jugadorRepository.findOne(id);
-        oldJugador.setCodigofide(j.getCodigofide());
         oldJugador.setApellidos(j.getApellidos());
         oldJugador.setNombres(j.getNombres());
         oldJugador.setCodigonacional(j.getCodigonacional());
