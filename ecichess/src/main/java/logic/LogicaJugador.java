@@ -38,4 +38,15 @@ public class LogicaJugador {
     public Jugador getJugadorById(int id) {
         return jugadorRepository.findOne(id);
     }
+    
+    public void modificarJugador(Jugador j, int id){
+        Jugador oldJugador = jugadorRepository.findOne(id);
+        oldJugador.setCodigofide(j.getCodigofide());
+        oldJugador.setApellidos(j.getApellidos());
+        oldJugador.setNombres(j.getNombres());
+        oldJugador.setCodigonacional(j.getCodigonacional());
+        oldJugador.setPais(j.getPais());
+        oldJugador.setAnionacimiento(j.getAnionacimiento());
+        jugadorRepository.save(oldJugador);
+    }
 }

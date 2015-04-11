@@ -34,6 +34,12 @@ public class JugadorRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
+    @RequestMapping(value="/{id}",method = RequestMethod.PUT)   
+    public ResponseEntity<?> modificarJugador(@PathVariable int id,@RequestBody Jugador j){
+        logicaJugador.modificarJugador(j, id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    
     @RequestMapping(value="/",method = RequestMethod.GET)        
     public List<Jugador> consultarJugador(){       
         return logicaJugador.getJugadores();

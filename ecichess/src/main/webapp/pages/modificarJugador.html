@@ -81,33 +81,55 @@
             <li class="active">Jugador</li>
           </ol>
         </section>
+
         <!-- Main content -->
         <section class="content">
           <div class="row">
-            <div class="col-xs-12">
-                <a href="crearJugador.html" class="btn btn-primary">Crear jugador</a>
-              <div class="box">
+            <!-- left column -->
+            
+              <!-- general form elements -->
+              <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Data Table With Full Features</h3>
+                  <h3 class="box-title">Modificar jugador</h3>
                 </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Código FIDE</th>
-                        <th>Apellidos</th>
-                        <th>Nombre</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div><!-- /.box-body -->
+                <!-- form start -->
+                <form role="form" onsubmit="return modificarJugador()">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="codigoFIDE">Código FIDE</label>
+                      <input type="number" class="form-control" id="codigoFIDE" placeholder="Código FIDE" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="apellidos">Apellidos</label>
+                      <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="nombres">Nombres</label>
+                      <input type="text" class="form-control" id="nombres" placeholder="Nombres" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="codigoNacional">Código nacional</label>
+                      <input type="number" class="form-control" id="codigoNacional" placeholder="Código nacional" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="pais">País</label>
+                      <input type="text" class="form-control" id="pais" placeholder="País" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="anioNacimiento">Año nacimiento</label>
+                      <input type="number" class="form-control" id="anioNacimiento" placeholder="Año nacimiento" required="true">
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                      <button type="submit" class="btn btn-primary">Modificar</button>
+                  </div>
+                </form>
               </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+            
+            <!-- right column -->
+          </div>   <!-- /.row -->
         </section><!-- /.content -->
-        
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -132,18 +154,46 @@
     <script src="../dist/js/app.min.js" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+        
+        
+    </script>
+
     <script type="text/javascript">
-      window.onload = function(){
-        $.getJSON("https://eci-chess.herokuapp.com/rest/jugador/",function(data){
-            var table = $("#example1");
-            for(var i=0;i<data.length;i++){
-                var obj = data[i];
-                var row = "<tr>"+"<td><a href=modificarJugador.html?id="+(obj.codigofide)+">"+(obj.codigofide)+"</a></td>"+"<td>"+(obj.apellidos)+"</td>"+"<td>"+(obj.nombres)+"</td>"+"</tr>"
-                table+=row;
+    var result = window.location.search.replace("?", "").split("=");
+    window.onload = function(){
+        $.getJSON("https://eci-chess.herokuapp.com/rest/jugador/"+result[1],function(data){
+            document.getElementById("codigoFIDE").value=data.codigofide;
+            document.getElementById("apellidos").value=data.apellidos;
+            document.getElementById("nombres").value=data.nombres;
+            document.getElementById("codigoNacional").value=data.codigonacional;
+            document.getElementById("pais").value=data.pais;
+            document.getElementById("anioNacimiento").value=data.anionacimiento;
+        });
+    };
+    
+      function modificarJugador(){
+        var codigoFIDE = document.getElementById("codigoFIDE").value;
+        var apellidos = document.getElementById("apellidos").value;
+        var nombres = document.getElementById("nombres").value;
+        var codigoNacional = document.getElementById("codigoNacional").value;
+        var pais = document.getElementById("pais").value;
+        var anioNacimiento = document.getElementById("anioNacimiento").value;
+        var JSONObject = {"codigofide":codigoFIDE,"apellidos":apellidos,"nombres":nombres,"codigonacional":codigoNacional,"pais":pais,"anionacimiento":anioNacimiento};
+        var request = $.ajax({
+            type: "PUT",
+            url: "https://eci-chess.herokuapp.com/rest/jugador/"+result[1],
+            data: JSON.stringify(JSONObject),
+            contentType: "application/json; charset=utf-8",
+            processData: true,
+            dataType: "json",
+            success: function(){
+                    alert("jugador modificado correctamente");
+                    location.replace("jugador.html");
             }
-            $("#example1 tbody").append(table);
-            $("#example1").dataTable();
-          });
+        });
+        return false;
       }
     </script>
   </body>
