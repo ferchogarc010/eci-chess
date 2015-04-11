@@ -58,17 +58,5 @@ public class TorneoRestController {
         logicaTorneo.deleteTorneo(id);
     }
     
-    @RequestMapping(value="/ejemplo",method = RequestMethod.GET)        
-    public Torneo getTorneoEjemplo(){
-        Torneo t = new Torneo(1, "n", "d", "o", "a", "l", "f", "rr", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()),new HashSet<Jugador>());
-        return t;
-    }
-    
-    
-    
-    
-    
-    
-    
     
 }

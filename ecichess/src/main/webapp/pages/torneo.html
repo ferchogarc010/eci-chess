@@ -134,10 +134,30 @@
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js" type="text/javascript"></script>
     <script type="text/javascript">
-      $(function () {
-        $("#example1").dataTable();
-        
-      });
+      window.onload = function(){
+        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/",function(data){
+            var table = $("#example1");
+            for(var i=0;i<data.length;i++){
+                var obj = data[i];
+                var row = "<tr>"+"<td><a href=modificarTorneo.html?id="+(obj.idtorneos)+">"+(obj.idtorneos)+"</a></td>"+"<td>"+(obj.nombre)+"</td>"+"<td>"+(obj.organizador)+"</td>"+"<td><a/ onclick=deleteTorneo("+(obj.idtorneos)+")><i class=\"fa fa-trash-o\"></i></td>"+"</tr>"
+                table+=row;
+            }
+            $("#example1 tbody").append(table);
+            $("#example1").dataTable();
+          });
+      };
+      
+      function deleteTorneo(data){
+        $.ajax({
+            url: 'https://eci-chess.herokuapp.com/rest/jugador/'+data,
+            type: 'DELETE',
+            success: function(result) {
+                alert("torneo eliminado correctamente");
+                location.replace("torneo.html");
+            }
+        });
+      }
+      
     </script>
   </body>
 </html>
