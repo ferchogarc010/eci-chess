@@ -193,9 +193,21 @@
         var lugar = document.getElementById("lugar").value;
         var federacion = document.getElementById("federacion").value;
         var tipo = document.getElementById("tipo").options[document.getElementById("tipo").selectedIndex].value;
-        var fecha = document.getElementById("fecha").value;
-        var JSONObject = {"idtorneos":codigo,"nombre":nombre,"director":director,"organizador":organizador,"arbitro":arbitro,"lugar":lugar,"federacion":federacion,"tipo":tipo,"fechainicio":fecha,"fechafin":fecha,"jugadoreses":[]};
-        alert (JSON.stringify(JSONObject));
+        var fecha = document.getElementById("fecha").value.split(" - ");
+        var JSONObject = {"idtorneos":codigo,"nombre":nombre,"director":director,"organizador":organizador,"arbitro":arbitro,"lugar":lugar,"federacion":federacion,"tipo":tipo,"fechainicio":fecha[0],"fechafin":fecha[1],"jugadoreses":[]};
+        alert(JSON.stringify(JSONObject));
+        var request = $.ajax({
+            type: "POST",
+            url: "https://eci-chess.herokuapp.com/rest/torneo/",
+            data: JSON.stringify(JSONObject),
+            contentType: "application/json; charset=utf-8",
+            processData: true,
+            dataType: "json",
+            success: function(){
+                    alert("torneo registrado correctamente");
+                    location.replace("torneo.html");
+            }
+        });
         return false;
       }
     </script>
