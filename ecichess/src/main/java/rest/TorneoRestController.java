@@ -53,7 +53,7 @@ public class TorneoRestController {
         return logicaTorneo.getTorneoById(id);
     }
     
-    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)     
+    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)  
     public void deleteTorneo(@PathVariable int id){
         logicaTorneo.deleteTorneo(id);
     }
