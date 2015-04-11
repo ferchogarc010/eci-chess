@@ -34,4 +34,8 @@ public class LogicaJugador {
         }
         return list;
     }
+
+    public Jugador getJugadorById(int id) {
+        return jugadorRepository.findOne(id);
+    }
 }

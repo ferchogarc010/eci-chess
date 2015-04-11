@@ -168,7 +168,7 @@
         var codigoNacional = document.getElementById("codigoNacional").value;
         var pais = document.getElementById("pais").value;
         var anioNacimiento = document.getElementById("anioNacimiento").value;
-        var JSONObject = {"codigoFide":codigoFIDE,"apellidos":apellidos,"nombres":nombres,"codigoNacional":codigoNacional,"pais":pais,"anioNacimiento":anioNacimiento};
+        var JSONObject = {"codigofide":codigoFIDE,"apellidos":apellidos,"nombres":nombres,"codigonacional":codigoNacional,"pais":pais,"anionacimiento":anioNacimiento};
         var request = $.ajax({
             type: "POST",
             url: "https://eci-chess.herokuapp.com/rest/jugador/",

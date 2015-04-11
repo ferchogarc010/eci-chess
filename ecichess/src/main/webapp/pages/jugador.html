@@ -138,7 +138,7 @@
             var table = $("#example1");
             for(var i=0;i<data.length;i++){
                 var obj = data[i];
-                var row = "<tr>"+"<td>"+(obj.codigoFide)+"</td>"+"<td>"+(obj.apellidos)+"</td>"+"<td>"+(obj.nombres)+"</td>"+"</tr>"
+                var row = "<tr>"+"<td><a href=https://eci-chess.herokuapp.com/rest/jugador/"+(obj.codigofide)+">"+(obj.codigofide)+"</a></td>"+"<td>"+(obj.apellidos)+"</td>"+"<td>"+(obj.nombres)+"</td>"+"</tr>"
                 table+=row;
             }
             $("#example1 tbody").append(table);
