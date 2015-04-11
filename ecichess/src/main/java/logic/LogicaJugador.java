@@ -49,4 +49,8 @@ public class LogicaJugador {
         oldJugador.setAnionacimiento(j.getAnionacimiento());
         jugadorRepository.save(oldJugador);
     }
+
+    public void deleteJugadorById(int id) {
+        jugadorRepository.delete(id);
+    }
 }

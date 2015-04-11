@@ -97,6 +97,7 @@
                         <th>Código FIDE</th>
                         <th>Apellidos</th>
                         <th>Nombre</th>
+                        <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -138,12 +139,23 @@
             var table = $("#example1");
             for(var i=0;i<data.length;i++){
                 var obj = data[i];
-                var row = "<tr>"+"<td><a href=modificarJugador.html?id="+(obj.codigofide)+">"+(obj.codigofide)+"</a></td>"+"<td>"+(obj.apellidos)+"</td>"+"<td>"+(obj.nombres)+"</td>"+"</tr>"
+                var row = "<tr>"+"<td><a href=modificarJugador.html?id="+(obj.codigofide)+">"+(obj.codigofide)+"</a></td>"+"<td>"+(obj.apellidos)+"</td>"+"<td>"+(obj.nombres)+"</td>"+"<td><a/ onclick=deleteJugador("+(obj.codigofide)+")><i class=\"fa fa-trash-o\"></i></td>"+"</tr>"
                 table+=row;
             }
             $("#example1 tbody").append(table);
             $("#example1").dataTable();
           });
+      };
+      
+      function deleteJugador(data){
+        $.ajax({
+            url: 'https://eci-chess.herokuapp.com/rest/jugador/'+data,
+            type: 'DELETE',
+            success: function(result) {
+                alert("jugador eliminado correctamente");
+                location.replace("jugador.html");
+            }
+        });
       }
     </script>
   </body>

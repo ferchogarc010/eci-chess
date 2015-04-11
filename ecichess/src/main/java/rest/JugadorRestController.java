@@ -50,5 +50,10 @@ public class JugadorRestController {
         return logicaJugador.getJugadorById(id);
     }
     
+    @RequestMapping(value="/{id}",method = RequestMethod.DELETE)   
+    public void eliminarJugadorPorId(@PathVariable int id){       
+        logicaJugador.deleteJugadorById(id);
+    }
+    
     
 }
