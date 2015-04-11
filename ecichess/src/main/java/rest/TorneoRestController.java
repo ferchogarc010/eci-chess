@@ -5,8 +5,11 @@
  */
 package rest;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import logic.LogicaTorneo;
+import model.Jugador;
 import model.Torneo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,6 +57,14 @@ public class TorneoRestController {
     public void deleteTorneo(@PathVariable int id){
         logicaTorneo.deleteTorneo(id);
     }
+    
+    @RequestMapping(value="/ejemplo",method = RequestMethod.GET)        
+    public Torneo getTorneoEjemplo(){
+        Torneo t = new Torneo(1, "n", "d", "o", "a", "l", "f", "rr", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()),new HashSet<Jugador>());
+        return t;
+    }
+    
+    
     
     
     
