@@ -143,7 +143,6 @@
     <script type="text/javascript">
     var result = window.location.search.replace("?", "").split("=");
     function registrarJugador(){
-        alert("https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/jugador");
         var codigoFIDE = document.getElementById("codigoFIDE").value;
         var JSONObject = {"codigofide":codigoFIDE};
         var request = $.ajax({

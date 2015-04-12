@@ -94,6 +94,16 @@ public class TorneoRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
+    @RequestMapping(value="/{id}/jugador",method = RequestMethod.GET)        
+    public List<Jugador> getJugadoresFromTorneoId(@PathVariable int id){
+        return logicaTorneo.getJugadores(id);
+    }
+    
+    @RequestMapping(value="/{torneo}/jugador/{jugador}",method = RequestMethod.DELETE)        
+    public void deleteJugadorFromTorneoId(@PathVariable int torneo, @PathVariable int jugador){
+        logicaTorneo.deleteJugador(torneo, jugador);
+    }
+    
     
     
 }

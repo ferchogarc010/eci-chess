@@ -6,7 +6,9 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import model.InfoJugador;
 import model.InfoRonda;
 import model.Jugador;
@@ -98,6 +100,26 @@ public class LogicaTorneo {
         Torneo t = torneoRepository.findOne(id);
         Jugador j = jugadorRepository.findOne(ij.getCodigofide());
         t.getJugadoreses().add(j);
+        torneoRepository.save(t);
+    }
+
+    public List<Jugador> getJugadores(int id) {
+        ArrayList<Jugador> l = new ArrayList<>();
+        l.addAll(torneoRepository.findOne(id).getJugadoreses());
+        return l;
+    }
+
+    public void deleteJugador(int torneo, int jugador) {
+        Torneo t = torneoRepository.findOne(torneo);
+        Set<Jugador> s = t.getJugadoreses();
+        Jugador oldj = null;
+        for (Jugador j : s) {
+            if(j.getCodigofide()==jugador){
+                oldj = j;
+            }
+        }
+        s.remove(oldj);
+        t.setJugadoreses(s);
         torneoRepository.save(t);
     }
 }
