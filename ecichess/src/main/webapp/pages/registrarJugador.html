@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>ECI Chess | Torneo</title>
+    <title>ECI Chess | Jugador</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -74,41 +74,42 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Torneo
+            Jugador
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Torneo</li>
+            <li class="active">Jugador</li>
           </ol>
         </section>
 
+        <!-- Main content -->
         <section class="content">
           <div class="row">
-            <div class="col-xs-12">
-                <a href="crearTorneo.html" class="btn btn-primary">Crear torneo</a>
-              <div class="box">
+            <!-- left column -->
+            
+              <!-- general form elements -->
+              <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Data Table With Full Features</h3>
+                  <h3 class="box-title">Modificar jugador</h3>
                 </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>id</th>
-                        <th>Nombre</th>
-                        <th>Organizador</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div><!-- /.box-body -->
+                <!-- form start -->
+                <form role="form" onsubmit="return registrarJugador()">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="codigoFIDE">Código FIDE</label>
+                      <input disabled="true" type="number" class="form-control" id="codigoFIDE" placeholder="Código FIDE" required="true">
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                      <button type="submit" class="btn btn-primary">Registrar</button>
+                  </div>
+                </form>
               </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+            
+            <!-- right column -->
+          </div>   <!-- /.row -->
         </section><!-- /.content -->
-        
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -133,34 +134,33 @@
     <script src="../dist/js/app.min.js" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+        
+        
+    </script>
+
     <script type="text/javascript">
-      window.onload = function(){
-        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/",function(data){
-            var table = $("#example1");
-            for(var i=0;i<data.length;i++){
-                var obj = data[i];
-                var row = "<tr>"+"<td><a href=modificarTorneo.html?id="+(obj.idtorneos)+">"+(obj.idtorneos)+"</a></td>"+"<td>"+(obj.nombre)+"</td>"+"<td>"+(obj.organizador)+"</td>"+"<td><a/ onclick=deleteTorneo("+(obj.idtorneos)+")><i class=\"fa fa-trash-o\"></i> <a/ href=crearRonda.html?id="+(obj.idtorneos)+"><i class=\"fa fa-plus-square-o\"></i> <a/ href=registrarJugador.html?id="+(obj.idtorneos)+"><i class=\"fa fa-user-plus\"></i> </td>"+"</tr>"
-                table+=row;
-            }
-            $("#example1 tbody").append(table);
-            $("#example1").dataTable();
-          });
-        
-        
-        
-      };
-      
-      function deleteTorneo(data){
-        $.ajax({
-            url: 'https://eci-chess.herokuapp.com/rest/torneo/'+data,
-            type: 'DELETE',
-            success: function(result) {
-                alert("torneo eliminado correctamente");
-                location.replace("torneo.html");
+    var result = window.location.search.replace("?", "").split("=");
+    
+    
+      function registrarJugador(){
+        var codigoFIDE = document.getElementById("codigoFIDE").value;
+        var JSONObject = {"codigofide":codigoFIDE};
+        var request = $.ajax({
+            type: "POST",
+            url: "https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/jugador",
+            data: JSON.stringify(JSONObject),
+            contentType: "application/json; charset=utf-8",
+            processData: true,
+            dataType: "json",
+            success: function(){
+                    alert("jugador registrado correctamente");
+                    location.replace("modificarTorneo.html?id="+result[1]);
             }
         });
+        return false;
       }
-      
     </script>
   </body>
 </html>

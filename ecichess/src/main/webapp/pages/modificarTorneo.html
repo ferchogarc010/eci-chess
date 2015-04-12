@@ -256,7 +256,7 @@
         $.ajax({
             url: 'https://eci-chess.herokuapp.com/rest/torneo/'+(result[1])+'/ronda/'+data,
             type: 'DELETE',
-            success: function(result) {
+            success: function(response) {
                 alert("ronda eliminada correctamente");
                 location.replace("modificarTorneo.html?id="+result[1]);
             }

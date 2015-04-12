@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import logic.LogicaTorneo;
+import model.InfoJugador;
 import model.InfoRonda;
 import model.Jugador;
 import model.Ronda;
@@ -85,6 +86,12 @@ public class TorneoRestController {
     @RequestMapping(value="/{torneo}/ronda/{ronda}",method = RequestMethod.DELETE)        
     public void deleteRonda(@PathVariable int torneo, @PathVariable int ronda){
         logicaTorneo.deleteRonda(torneo, ronda);
+    }
+    
+    @RequestMapping(value="/{id}/jugador",method = RequestMethod.POST)
+    public ResponseEntity<?> guardarJugadorEnTorneo(@PathVariable int id,@RequestBody InfoJugador ij){
+        logicaTorneo.registrarJugadorEnTorneo(ij, id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
     

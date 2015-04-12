@@ -7,12 +7,15 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.InfoJugador;
 import model.InfoRonda;
+import model.Jugador;
 import model.Ronda;
 import model.RondaId;
 import model.Torneo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import persistence.JugadorRepository;
 import persistence.RondaRepository;
 import persistence.TorneoRepository;
 
@@ -28,6 +31,9 @@ public class LogicaTorneo {
     
     @Autowired
     private RondaRepository rondaRepository;
+    
+    @Autowired
+    private JugadorRepository jugadorRepository;
     
     public void registrarTorneo(Torneo t){
         torneoRepository.save(t);
@@ -86,5 +92,12 @@ public class LogicaTorneo {
 
     public void deleteRonda(int torneo, int ronda) {
         rondaRepository.delete(new RondaId(ronda, torneo));
+    }
+
+    public void registrarJugadorEnTorneo(InfoJugador ij, int id) {
+        Torneo t = torneoRepository.findOne(id);
+        Jugador j = jugadorRepository.findOne(ij.getCodigofide());
+        t.getJugadoreses().add(j);
+        torneoRepository.save(t);
     }
 }
