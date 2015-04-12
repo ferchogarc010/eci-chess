@@ -22,4 +22,7 @@ public interface RondaRepository extends CrudRepository<Ronda, RondaId>{
     @Query("from Ronda r where r.id.torneosIdtorneos = :id")
     public List<Ronda> searchRondasByIdTorneo(@Param("id") int id);
     
+    @Query("from Ronda r where r.id.torneosIdtorneos = :idTorneo and r.id.idrondas = :idRonda")
+    public List<Ronda> searchRondaById(@Param("idTorneo") int idTorneo, @Param("idRonda") int idTonda );
+    
 }

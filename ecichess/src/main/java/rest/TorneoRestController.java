@@ -71,6 +71,11 @@ public class TorneoRestController {
         return logicaTorneo.getRondas(id);
     }
     
+    @RequestMapping(value="/{torneo}/ronda/{ronda}",method = RequestMethod.GET)        
+    public Ronda getRonda(@PathVariable int torneo, @PathVariable int ronda){
+        return logicaTorneo.getRonda(torneo, ronda);
+    }
+    
     
     
 }

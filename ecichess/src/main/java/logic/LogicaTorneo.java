@@ -73,4 +73,8 @@ public class LogicaTorneo {
     public List<Ronda> getRondas(int id) {
         return rondaRepository.searchRondasByIdTorneo(id);
     }
+
+    public Ronda getRonda(int torneo, int ronda) {
+        return rondaRepository.searchRondaById(torneo, ronda).get(0);
+    }
 }

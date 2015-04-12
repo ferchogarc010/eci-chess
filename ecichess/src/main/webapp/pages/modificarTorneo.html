@@ -155,8 +155,8 @@
                   <table id="example1" class="table table-striped">
                       <thead>
                           <tr>
-                            <th style="width: 10px">#</th>
-                            <th>fecha</th>
+                            <td style="width: 10px">#</td>
+                            <td>fecha</td>
                           </tr>
                       </thead>
                       <tbody>
@@ -215,14 +215,13 @@
             document.getElementById("fecha").value=data.fechainicio+" - "+data.fechafin;
         });
         $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/ronda",function(data){
-            alert(data);
-            var table = $("#example1");
+            var table = "";
             for(var i=0;i<data.length;i++){
                 var obj = data[i];
-                var row = "<tr>"+"<td></td>"+"</tr>"
+                var row = "<tr><td><a/ href=modificarRonda.html?idRonda="+(obj.id.idrondas)+"&idTorneo="+(obj.id.torneosIdtorneos)+">"+(obj.id.idrondas)+"</td><td>"+(obj.fecha)+"</td></tr>";
                 table+=row;
             }
-            $("#example1 tbody").append(table);
+            $("#example1 tr:last").after(table);
         });
             
         };
