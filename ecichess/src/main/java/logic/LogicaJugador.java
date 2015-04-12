@@ -8,6 +8,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 import model.Jugador;
+import model.Torneo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import persistence.JugadorRepository;
@@ -52,4 +53,6 @@ public class LogicaJugador {
     public void deleteJugadorById(int id) {
         jugadorRepository.delete(id);
     }
+
+    
 }

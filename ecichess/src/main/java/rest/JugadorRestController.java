@@ -7,7 +7,9 @@ package rest;
 
 import java.util.List;
 import logic.LogicaJugador;
+import logic.LogicaTorneo;
 import model.Jugador;
+import model.Torneo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,9 @@ public class JugadorRestController {
     
     @Autowired
     private LogicaJugador logicaJugador;
+    
+    @Autowired
+    private LogicaTorneo logicaTorneo;
     
     @RequestMapping(value="/",method = RequestMethod.POST)   
     public ResponseEntity<?> guardarJugador(@RequestBody Jugador j){
@@ -53,6 +58,11 @@ public class JugadorRestController {
     @RequestMapping(value="/{id}",method = RequestMethod.DELETE)   
     public void eliminarJugadorPorId(@PathVariable int id){       
         logicaJugador.deleteJugadorById(id);
+    }
+    
+    @RequestMapping(value="/{id}/torneo",method = RequestMethod.GET)        
+    public List<Torneo> consultarTorneosporJugador(@PathVariable int id){       
+        return logicaTorneo.getTorneosByJugador(id);
     }
     
     

@@ -122,4 +122,8 @@ public class LogicaTorneo {
         t.setJugadoreses(s);
         torneoRepository.save(t);
     }
+
+    public List<Torneo> getTorneosByJugador(int id) {
+        return torneoRepository.searchTorneosByJugador(id);
+    }
 }
