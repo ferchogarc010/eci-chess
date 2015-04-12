@@ -82,6 +82,11 @@ public class TorneoRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
+    @RequestMapping(value="/{torneo}/ronda/{ronda}",method = RequestMethod.DELETE)        
+    public void deleteRonda(@PathVariable int torneo, @PathVariable int ronda){
+        logicaTorneo.deleteRonda(torneo, ronda);
+    }
+    
     
     
 }

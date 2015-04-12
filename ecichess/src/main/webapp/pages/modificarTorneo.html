@@ -157,6 +157,7 @@
                           <tr>
                             <td style="width: 10px">#</td>
                             <td>fecha</td>
+                            <td>acciones</td>
                           </tr>
                       </thead>
                       <tbody>
@@ -218,7 +219,7 @@
             var table = "";
             for(var i=0;i<data.length;i++){
                 var obj = data[i];
-                var row = "<tr><td><a/ href=modificarRonda.html?idRonda="+(obj.id.idrondas)+"&idTorneo="+(obj.id.torneosIdtorneos)+">"+(obj.id.idrondas)+"</td><td>"+(obj.fecha)+"</td></tr>";
+                var row = "<tr><td><a/ href=modificarRonda.html?idRonda="+(obj.id.idrondas)+"&idTorneo="+(obj.id.torneosIdtorneos)+">"+(obj.id.idrondas)+"</td><td>"+(obj.fecha)+"</td><td><a/ onclick=deleteRonda("+(obj.id.idrondas)+")><i class=\"fa fa-trash-o\"></i></td></tr>";
                 table+=row;
             }
             $("#example1 tr:last").after(table);
@@ -249,6 +250,17 @@
             }
         });
         return false;
+      }
+      
+      function deleteRonda(data){
+        $.ajax({
+            url: 'https://eci-chess.herokuapp.com/rest/torneo/'+(result[1])+'/ronda/'+data,
+            type: 'DELETE',
+            success: function(result) {
+                alert("ronda eliminada correctamente");
+                location.replace("modificarTorneo.html?id="+result[1]);
+            }
+        });
       }
     </script>
   </body>

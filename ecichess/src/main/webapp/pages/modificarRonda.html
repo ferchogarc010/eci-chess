@@ -157,7 +157,7 @@
     function modificarRonda(){
         var numeroRonda = document.getElementById("numeroRonda").value;
         var fecha = document.getElementById("fecha").value;
-        var JSONObject = {"id":{"idrondas":numeroRonda,"torneosIdtorneos":result[1]},"fecha":(new Date(fecha).getTime())};
+        var JSONObject = {"id":{"idrondas":numeroRonda,"torneosIdtorneos":idTorneo},"fecha":(new Date(fecha).getTime())};
         var request = $.ajax({
             type: "PUT",
             url: "https://eci-chess.herokuapp.com/rest/torneo/"+idTorneo+"/ronda/"+idRonda,

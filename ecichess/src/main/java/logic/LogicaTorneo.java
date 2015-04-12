@@ -83,4 +83,8 @@ public class LogicaTorneo {
         r.setFecha(ir.getFecha());
         rondaRepository.save(r);
     }
+
+    public void deleteRonda(int torneo, int ronda) {
+        rondaRepository.delete(new RondaId(ronda, torneo));
+    }
 }
