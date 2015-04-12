@@ -77,4 +77,10 @@ public class LogicaTorneo {
     public Ronda getRonda(int torneo, int ronda) {
         return rondaRepository.searchRondaById(torneo, ronda).get(0);
     }
+
+    public void modificarRondaEnTorneo(InfoRonda ir, int ronda, int torneo) {
+        Ronda r = rondaRepository.findOne(ir.getId());
+        r.setFecha(ir.getFecha());
+        rondaRepository.save(r);
+    }
 }

@@ -76,6 +76,12 @@ public class TorneoRestController {
         return logicaTorneo.getRonda(torneo, ronda);
     }
     
+    @RequestMapping(value="/{torneo}/ronda/{ronda}",method = RequestMethod.PUT)
+    public ResponseEntity<?> modificarRondaEnTorneo(@PathVariable int torneo, @PathVariable int ronda,@RequestBody InfoRonda ir){
+        logicaTorneo.modificarRondaEnTorneo(ir, ronda, torneo);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    
     
     
 }
