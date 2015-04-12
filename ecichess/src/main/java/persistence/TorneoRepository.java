@@ -18,6 +18,6 @@ import org.springframework.data.repository.query.Param;
  */
 public interface TorneoRepository  extends CrudRepository<Torneo, Integer>{
     
-    @Query("from Torneo t where t.jugadoreses.codigofide = :id")
+    @Query("select t from Torneo t inner join t.jugadoreses j where j.codigofide = :id")
     public List<Torneo> searchTorneosByJugador(@Param("id") int id);
 }
