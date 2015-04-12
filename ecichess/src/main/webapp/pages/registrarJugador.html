@@ -97,7 +97,7 @@
                   <div class="box-body">
                     <div class="form-group">
                       <label for="codigoFIDE">Código FIDE</label>
-                      <input disabled="true" type="number" class="form-control" id="codigoFIDE" placeholder="Código FIDE" required="true">
+                      <input type="number" class="form-control" id="codigoFIDE" placeholder="Código FIDE" required="true">
                     </div>
                   </div><!-- /.box-body -->
 
@@ -142,9 +142,8 @@
 
     <script type="text/javascript">
     var result = window.location.search.replace("?", "").split("=");
-    
-    
-      function registrarJugador(){
+    function registrarJugador(){
+        alert("https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/jugador");
         var codigoFIDE = document.getElementById("codigoFIDE").value;
         var JSONObject = {"codigofide":codigoFIDE};
         var request = $.ajax({
