@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import logic.LogicaTorneo;
+import model.InfoRonda;
 import model.Jugador;
 import model.Torneo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,12 @@ public class TorneoRestController {
     @RequestMapping(value="/{id}",method = RequestMethod.DELETE)  
     public void deleteTorneo(@PathVariable int id){
         logicaTorneo.deleteTorneo(id);
+    }
+    
+    @RequestMapping(value="/{id}/ronda",method = RequestMethod.POST)
+    public ResponseEntity<?> guardarRondaEnTorneo(@PathVariable int id,@RequestBody InfoRonda ir){
+        logicaTorneo.registrarRondaEnTorneo(ir, id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
     
