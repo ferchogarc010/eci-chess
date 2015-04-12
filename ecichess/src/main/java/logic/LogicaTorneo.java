@@ -69,4 +69,8 @@ public class LogicaTorneo {
         Ronda r = new Ronda(ir.getId(), t, ir.getFecha());
         rondaRepository.save(r);
     }
+
+    public List<Ronda> getRondas(int id) {
+        return rondaRepository.searchRondasByIdTorneo(id);
+    }
 }

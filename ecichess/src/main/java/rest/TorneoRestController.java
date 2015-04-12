@@ -11,6 +11,7 @@ import java.util.List;
 import logic.LogicaTorneo;
 import model.InfoRonda;
 import model.Jugador;
+import model.Ronda;
 import model.Torneo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,6 +65,12 @@ public class TorneoRestController {
         logicaTorneo.registrarRondaEnTorneo(ir, id);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    
+    @RequestMapping(value="/{id}/ronda",method = RequestMethod.GET)        
+    public List<Ronda> getRondasFromTorneoId(@PathVariable int id){
+        return logicaTorneo.getRondas(id);
+    }
+    
     
     
 }

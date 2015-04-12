@@ -146,6 +146,25 @@
                   </div>
                 </form>
               </div><!-- /.box -->
+              
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Rondas</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <table id="example1" class="table table-striped">
+                      <thead>
+                          <tr>
+                            <th style="width: 10px">#</th>
+                            <th>fecha</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          
+                      </tbody>
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
             
             <!-- right column -->
           </div>   <!-- /.row -->
@@ -194,7 +213,18 @@
             document.getElementById("federacion").value=data.federacion;
             document.getElementById("tipo").options[document.getElementById("tipo").selectedIndex].value=data.tipo;
             document.getElementById("fecha").value=data.fechainicio+" - "+data.fechafin;
-            });
+        });
+        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/ronda",function(data){
+            alert(data);
+            var table = $("#example1");
+            for(var i=0;i<data.length;i++){
+                var obj = data[i];
+                var row = "<tr>"+"<td></td>"+"</tr>"
+                table+=row;
+            }
+            $("#example1 tbody").append(table);
+        });
+            
         };
       function modificarTorneo(){
         var codigo = document.getElementById("codigo").value;
