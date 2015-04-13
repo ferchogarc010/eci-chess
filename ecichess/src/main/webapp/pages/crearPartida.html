@@ -161,20 +161,28 @@
     </script>
 
     <script type="text/javascript">
-      window.onLoad = function(){
+      window.onload = function(){
         var torneo = document.getElementById("torneo");
         $.getJSON("https://eci-chess.herokuapp.com/rest/ronda/",function(data){
-            alert(JSON.stringify(data));
+            for(var i=0;i<data.length;i++){
+                var obj = data[i];
+                var opt = document.createElement("option");
+                opt.value= obj.id.idrondas+"-"+obj.id.torneosIdtorneos;
+                opt.innerHTML = obj.torneos.nombre+" ronda:"+obj.id.idrondas;
+                torneo.appendChild(opt);
+                
+            }
         });
       };  
         
       function registrarPartida(){
-        var codigoPartida = document.getElementById("codigoParida").value;
+        var codigoPartida = document.getElementById("codigoPartida").value;
         var codigoFIDE1 = document.getElementById("codigoFIDE1").value;
         var codigoFIDE2 = document.getElementById("codigoFIDE2").value;
         var torneo = document.getElementById("torneo").options[document.getElementById("torneo").selectedIndex].value.split("-");
         var resultado = document.getElementById("resultado").value;
         var JSONObject = {"idpartidas":codigoPartida,"codigofide1":codigoFIDE1,"codigofide2":codigoFIDE2,"ronda":{"idrondas":torneo[0],"torneosIdtorneos":torneo[1]},"resultado":resultado};
+        alert(JSON.stringify(JSONObject));
         var request = $.ajax({
             type: "POST",
             url: "https://eci-chess.herokuapp.com/rest/partida/",

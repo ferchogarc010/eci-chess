@@ -30,8 +30,8 @@ public class PartidaRestController {
     private LogicaPartida logicaPartida;
     
     @RequestMapping(value="/",method = RequestMethod.POST)   
-    public ResponseEntity<?> guardarPartida(@RequestBody Partida p){
-        logicaPartida.registrarPartida(p);
+    public ResponseEntity<?> guardarPartida(@RequestBody InfoPartida ip){
+        logicaPartida.registrarPartida(ip);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     

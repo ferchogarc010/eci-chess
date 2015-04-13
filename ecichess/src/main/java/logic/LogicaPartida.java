@@ -31,7 +31,8 @@ public class LogicaPartida {
     @Autowired
     private RondaRepository rondaRepository;
     
-    public void registrarPartida(Partida p){
+    public void registrarPartida(InfoPartida ip){
+        Partida p = new Partida(ip.getIdpartidas(), jugadorRepository.findOne(ip.getCodigofide1()),jugadorRepository.findOne(ip.getCodigofide2()), rondaRepository.findOne(ip.getRonda()), ip.getResultado());
         partidaRepository.save(p);
     }
     
