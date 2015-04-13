@@ -90,10 +90,10 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Crear partida</h3>
+                  <h3 class="box-title">Modificar partida</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" onsubmit="return registrarPartida()">
+                <form role="form" onsubmit="return modificarPartida()">
                   <div class="box-body">
                     <div class="form-group">
                       <label for="codigoPartida">Código partida</label>
@@ -125,8 +125,9 @@
                       <button type="submit" class="btn btn-primary">Registrar</button>
                   </div>
                 </form>
+        
               </div><!-- /.box -->
-            
+              
             <!-- right column -->
           </div>   <!-- /.row -->
         </section><!-- /.content -->
@@ -161,7 +162,8 @@
     </script>
 
     <script type="text/javascript">
-      window.onload = function(){
+    var result = window.location.search.replace("?", "").split("=");
+    window.onload = function(){
         var torneo = document.getElementById("torneo");
         $.getJSON("https://eci-chess.herokuapp.com/rest/ronda/",function(data){
             for(var i=0;i<data.length;i++){
@@ -173,9 +175,17 @@
                 
             }
         });
-      };  
         
-      function registrarPartida(){
+        $.getJSON("https://eci-chess.herokuapp.com/rest/partida/"+result[1],function(data){
+            document.getElementById("codigoPartida").value=data.idpartidas;
+            document.getElementById("codigoFIDE1").value=data.jugadoresByJugadoresCodigofide1.codigofide;
+            document.getElementById("codigoFIDE2").value=data.jugadoresByJugadoresCodigofide.codigofide;
+            document.getElementById("torneo").value=data.rondas.id.idrondas+"-"+data.rondas.id.torneosIdtorneos;
+            document.getElementById("resultado").value=data.resultado;
+        });
+    };
+    
+      function modificarPartida(){
         var codigoPartida = document.getElementById("codigoPartida").value;
         var codigoFIDE1 = document.getElementById("codigoFIDE1").value;
         var codigoFIDE2 = document.getElementById("codigoFIDE2").value;
@@ -183,14 +193,14 @@
         var resultado = document.getElementById("resultado").value;
         var JSONObject = {"idpartidas":codigoPartida,"codigofide1":codigoFIDE1,"codigofide2":codigoFIDE2,"ronda":{"idrondas":torneo[0],"torneosIdtorneos":torneo[1]},"resultado":resultado};
         var request = $.ajax({
-            type: "POST",
-            url: "https://eci-chess.herokuapp.com/rest/partida/",
+            type: "PUT",
+            url: "https://eci-chess.herokuapp.com/rest/partida/"+result[1],
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,
             dataType: "json",
             success: function(){
-                    alert("partida registrada correctamente");
+                    alert("partida modificada correctamente");
                     location.replace("partida.html");
             }
         });
