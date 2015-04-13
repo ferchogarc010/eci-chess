@@ -74,7 +74,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Torneo
+            Partida
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -82,34 +82,54 @@
           </ol>
         </section>
 
+        <!-- Main content -->
         <section class="content">
           <div class="row">
-            <div class="col-xs-12">
-                <a href="crearPartida.html" class="btn btn-primary">Crear Partida</a>
-              <div class="box">
+            <!-- left column -->
+            
+              <!-- general form elements -->
+              <div class="box box-primary">
                 <div class="box-header">
-                  <h3 class="box-title">Data Table With Full Features</h3>
+                  <h3 class="box-title">Crear partida</h3>
                 </div><!-- /.box-header -->
-                <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>id</th>
-                        <th>jugador</th>
-                        <th>resultado</th>
-                        <th>jugador</th>
-                        <th>acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div><!-- /.box-body -->
+                <!-- form start -->
+                <form role="form" onsubmit="return registrarJugador()">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="codigoFIDE">Código FIDE</label>
+                      <input type="number" class="form-control" id="codigoFIDE" placeholder="Código FIDE" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="apellidos">Apellidos</label>
+                      <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="nombres">Nombres</label>
+                      <input type="text" class="form-control" id="nombres" placeholder="Nombres" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="codigoNacional">Código nacional</label>
+                      <input type="number" class="form-control" id="codigoNacional" placeholder="Código nacional" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="pais">País</label>
+                      <input type="text" class="form-control" id="pais" placeholder="País" required="true">
+                    </div>
+                    <div class="form-group">
+                      <label for="anioNacimiento">Año nacimiento</label>
+                      <input type="number" class="form-control" id="anioNacimiento" placeholder="Año nacimiento" required="true">
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                      <button type="submit" class="btn btn-primary">Registrar</button>
+                  </div>
+                </form>
               </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+            
+            <!-- right column -->
+          </div>   <!-- /.row -->
         </section><!-- /.content -->
-        
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
@@ -134,34 +154,35 @@
     <script src="../dist/js/app.min.js" type="text/javascript"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../dist/js/demo.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+        
+        
+    </script>
+
     <script type="text/javascript">
-      window.onload = function(){
-        $.getJSON("https://eci-chess.herokuapp.com/rest/partida/",function(data){
-            var table = $("#example1");
-            for(var i=0;i<data.length;i++){
-                var obj = data[i];
-                var row = "<tr>"+"<td><a href=modificarPartida.html?id="+(obj.idpartidas)+">"+(obj.idpartidas)+"</a></td>"+"<td>"+(obj.jugadoresByJugadoresCodigofide1.codigofide)+"</td>"+"<td>"+(obj.resultado)+"</td>"+"<td>"+(obj.jugadoresByJugadoresCodigofide.codigofide)+"</td><td>"+"<a onclick=deletePartida("+(obj.idpartidas)+")><i class=\"fa fa-trash-o\"></i></a>"+"</td>"+"</tr>"
-                table+=row;
-            }
-            $("#example1 tbody").append(table);
-            $("#example1").dataTable();
-          });
-        
-        
-        
-      };
-      
-      function deletePartida(data){
-        $.ajax({
-            url: 'https://eci-chess.herokuapp.com/rest/partida/'+data,
-            type: 'DELETE',
-            success: function(result) {
-                alert("partida eliminada correctamente");
-                location.replace("partida.html");
+      function registrarJugador(){
+        var codigoFIDE = document.getElementById("codigoFIDE").value;
+        var apellidos = document.getElementById("apellidos").value;
+        var nombres = document.getElementById("nombres").value;
+        var codigoNacional = document.getElementById("codigoNacional").value;
+        var pais = document.getElementById("pais").value;
+        var anioNacimiento = document.getElementById("anioNacimiento").value;
+        var JSONObject = {"codigofide":codigoFIDE,"apellidos":apellidos,"nombres":nombres,"codigonacional":codigoNacional,"pais":pais,"anionacimiento":anioNacimiento};
+        var request = $.ajax({
+            type: "POST",
+            url: "https://eci-chess.herokuapp.com/rest/jugador/",
+            data: JSON.stringify(JSONObject),
+            contentType: "application/json; charset=utf-8",
+            processData: true,
+            dataType: "json",
+            success: function(){
+                    alert("jugador registrado correctamente");
+                    location.replace("jugador.html");
             }
         });
+        return false;
       }
-      
     </script>
   </body>
 </html>
