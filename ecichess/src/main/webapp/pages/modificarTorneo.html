@@ -224,7 +224,7 @@
     <script type="text/javascript">
         var result = window.location.search.replace("?", "").split("=");
         window.onload = function(){
-        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/"+result[1],function(data){
+        $.getJSON("rest/torneo/"+result[1],function(data){
             document.getElementById("codigo").value=data.idtorneos;
             document.getElementById("nombre").value=data.nombre;
             document.getElementById("director").value=data.director;
@@ -235,7 +235,7 @@
             document.getElementById("tipo").options[document.getElementById("tipo").selectedIndex].value=data.tipo;
             document.getElementById("fecha").value=data.fechainicio+" - "+data.fechafin;
         });
-        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/ronda",function(data){
+        $.getJSON("rest/torneo/"+result[1]+"/ronda",function(data){
             var table = "";
             for(var i=0;i<data.length;i++){
                 var obj = data[i];
@@ -245,7 +245,7 @@
             $("#example1 tr:last").after(table);
         });
         
-        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/jugador",function(data){
+        $.getJSON("rest/torneo/"+result[1]+"/jugador",function(data){
             var table = "";
             for(var i=0;i<data.length;i++){
                 var obj = data[i];

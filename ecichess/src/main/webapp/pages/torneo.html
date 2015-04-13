@@ -135,7 +135,7 @@
     <script src="../dist/js/demo.js" type="text/javascript"></script>
     <script type="text/javascript">
       window.onload = function(){
-        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/",function(data){
+        $.getJSON("rest/torneo/",function(data){
             var table = $("#example1");
             for(var i=0;i<data.length;i++){
                 var obj = data[i];

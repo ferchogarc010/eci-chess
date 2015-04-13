@@ -165,7 +165,7 @@
     var result = window.location.search.replace("?", "").split("=");
     window.onload = function(){
         var torneo = document.getElementById("torneo");
-        $.getJSON("https://eci-chess.herokuapp.com/rest/ronda/",function(data){
+        $.getJSON("rest/ronda/",function(data){
             for(var i=0;i<data.length;i++){
                 var obj = data[i];
                 var opt = document.createElement("option");
@@ -176,7 +176,7 @@
             }
         });
         
-        $.getJSON("https://eci-chess.herokuapp.com/rest/partida/"+result[1],function(data){
+        $.getJSON("rest/partida/"+result[1],function(data){
             document.getElementById("codigoPartida").value=data.idpartidas;
             document.getElementById("codigoFIDE1").value=data.jugadoresByJugadoresCodigofide1.codigofide;
             document.getElementById("codigoFIDE2").value=data.jugadoresByJugadoresCodigofide.codigofide;
