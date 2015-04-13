@@ -162,35 +162,29 @@
 
     <script type="text/javascript">
       window.onLoad = function(){
-          var torneo = document.getElementById("torneo");
-          $.getJSON("https://eci-chess.herokuapp.com/rest/ronda/",function(data){
-            for(var i=0;i<data.length;i++){
-                var opt = document.createElement('option');
-                opt.innerHTML = data[i].torneos.nombre+" Ronda: "+data[i].id.idrondas;
-                opt.value = data[i].id.idrondas+" "+data[i].id.torneosIdtorneos;
-                torneo.appendChild(opt);
-            }
-          });
+        var torneo = document.getElementById("torneo");
+        $.getJSON("https://eci-chess.herokuapp.com/rest/ronda/",function(data){
+            alert(JSON.stringify(data));
+        });
       };  
         
-      function registrarJugador(){
-        var codigoFIDE = document.getElementById("codigoFIDE").value;
-        var apellidos = document.getElementById("apellidos").value;
-        var nombres = document.getElementById("nombres").value;
-        var codigoNacional = document.getElementById("codigoNacional").value;
-        var pais = document.getElementById("pais").value;
-        var anioNacimiento = document.getElementById("anioNacimiento").value;
-        var JSONObject = {"codigofide":codigoFIDE,"apellidos":apellidos,"nombres":nombres,"codigonacional":codigoNacional,"pais":pais,"anionacimiento":anioNacimiento};
+      function registrarPartida(){
+        var codigoPartida = document.getElementById("codigoParida").value;
+        var codigoFIDE1 = document.getElementById("codigoFIDE1").value;
+        var codigoFIDE2 = document.getElementById("codigoFIDE2").value;
+        var torneo = document.getElementById("torneo").options[document.getElementById("torneo").selectedIndex].value.split("-");
+        var resultado = document.getElementById("resultado").value;
+        var JSONObject = {"idpartidas":codigoPartida,"codigofide1":codigoFIDE1,"codigofide2":codigoFIDE2,"ronda":{"idrondas":torneo[0],"torneosIdtorneos":torneo[1]},"resultado":resultado};
         var request = $.ajax({
             type: "POST",
-            url: "https://eci-chess.herokuapp.com/rest/jugador/",
+            url: "https://eci-chess.herokuapp.com/rest/partida/",
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,
             dataType: "json",
             success: function(){
-                    alert("jugador registrado correctamente");
-                    location.replace("jugador.html");
+                    alert("partida registrada correctamente");
+                    location.replace("partida.html");
             }
         });
         return false;
