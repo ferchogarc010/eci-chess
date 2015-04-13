@@ -152,7 +152,7 @@
       
       function deleteTorneo(data){
         $.ajax({
-            url: 'https://eci-chess.herokuapp.com/rest/torneo/'+data,
+            url: '../rest/torneo/'+data,
             type: 'DELETE',
             success: function(result) {
                 alert("torneo eliminado correctamente");

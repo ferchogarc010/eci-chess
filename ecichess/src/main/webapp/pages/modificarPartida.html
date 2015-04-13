@@ -194,7 +194,7 @@
         var JSONObject = {"idpartidas":codigoPartida,"codigofide1":codigoFIDE1,"codigofide2":codigoFIDE2,"ronda":{"idrondas":torneo[0],"torneosIdtorneos":torneo[1]},"resultado":resultado};
         var request = $.ajax({
             type: "PUT",
-            url: "https://eci-chess.herokuapp.com/rest/partida/"+result[1],
+            url: "../rest/partida/"+result[1],
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,

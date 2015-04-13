@@ -171,7 +171,7 @@
         var JSONObject = {"codigofide":codigoFIDE,"apellidos":apellidos,"nombres":nombres,"codigonacional":codigoNacional,"pais":pais,"anionacimiento":anioNacimiento};
         var request = $.ajax({
             type: "POST",
-            url: "https://eci-chess.herokuapp.com/rest/jugador/",
+            url: "../rest/jugador/",
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,

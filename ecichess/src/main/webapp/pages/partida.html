@@ -153,7 +153,7 @@
       
       function deletePartida(data){
         $.ajax({
-            url: 'https://eci-chess.herokuapp.com/rest/partida/'+data,
+            url: '../rest/partida/'+data,
             type: 'DELETE',
             success: function(result) {
                 alert("partida eliminada correctamente");

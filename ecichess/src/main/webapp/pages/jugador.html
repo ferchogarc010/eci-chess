@@ -149,7 +149,7 @@
       
       function deleteJugador(data){
         $.ajax({
-            url: 'https://eci-chess.herokuapp.com/rest/jugador/'+data,
+            url: '../rest/jugador/'+data,
             type: 'DELETE',
             success: function(result) {
                 alert("jugador eliminado correctamente");

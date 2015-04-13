@@ -147,7 +147,7 @@
         var JSONObject = {"codigofide":codigoFIDE};
         var request = $.ajax({
             type: "POST",
-            url: "https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/jugador",
+            url: "../rest/torneo/"+result[1]+"/jugador",
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,

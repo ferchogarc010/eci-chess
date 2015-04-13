@@ -269,7 +269,7 @@
         var JSONObject = {"idtorneos":codigo,"nombre":nombre,"director":director,"organizador":organizador,"arbitro":arbitro,"lugar":lugar,"federacion":federacion,"tipo":tipo,"fechainicio":(new Date(fecha[0]).getTime()),"fechafin":(new Date(fecha[1]).getTime()),"jugadoreses":[]};
         var request = $.ajax({
             type: "PUT",
-            url: "https://eci-chess.herokuapp.com/rest/torneo/"+result[1],
+            url: "../rest/torneo/"+result[1],
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,
@@ -284,7 +284,7 @@
       
       function deleteRonda(data){
         $.ajax({
-            url: 'https://eci-chess.herokuapp.com/rest/torneo/'+(result[1])+'/ronda/'+data,
+            url: '../rest/torneo/'+(result[1])+'/ronda/'+data,
             type: 'DELETE',
             success: function(response) {
                 alert("ronda eliminada correctamente");
@@ -295,7 +295,7 @@
       
       function deleteJugadorDeTorneo(data){
         $.ajax({
-            url: 'https://eci-chess.herokuapp.com/rest/torneo/'+(result[1])+'/jugador/'+data,
+            url: '../rest/torneo/'+(result[1])+'/jugador/'+data,
             type: 'DELETE',
             success: function(response) {
                 alert("jugador eliminado correctamente del torneo");

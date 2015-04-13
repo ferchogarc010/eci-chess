@@ -213,7 +213,7 @@
         var JSONObject = {"codigofide":codigoFIDE,"apellidos":apellidos,"nombres":nombres,"codigonacional":codigoNacional,"pais":pais,"anionacimiento":anioNacimiento};
         var request = $.ajax({
             type: "PUT",
-            url: "https://eci-chess.herokuapp.com/rest/jugador/"+result[1],
+            url: "../rest/jugador/"+result[1],
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,

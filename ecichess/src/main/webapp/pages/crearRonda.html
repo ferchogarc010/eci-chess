@@ -151,7 +151,7 @@
         var JSONObject = {"id":{"idrondas":numeroRonda,"torneosIdtorneos":result[1]},"fecha":(new Date(fecha).getTime())};
         var request = $.ajax({
             type: "POST",
-            url: "https://eci-chess.herokuapp.com/rest/torneo/"+result[1]+"/ronda",
+            url: "../rest/torneo/"+result[1]+"/ronda",
             data: JSON.stringify(JSONObject),
             contentType: "application/json; charset=utf-8",
             processData: true,
