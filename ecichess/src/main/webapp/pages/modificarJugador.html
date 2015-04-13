@@ -183,7 +183,7 @@
     <script type="text/javascript">
     var result = window.location.search.replace("?", "").split("=");
     window.onload = function(){
-        $.getJSON("rest/jugador/"+result[1],function(data){
+        $.getJSON("../rest/jugador/"+result[1],function(data){
             document.getElementById("codigoFIDE").value=data.codigofide;
             document.getElementById("apellidos").value=data.apellidos;
             document.getElementById("nombres").value=data.nombres;
@@ -192,7 +192,7 @@
             document.getElementById("anioNacimiento").value=data.anionacimiento;
         });
         
-        $.getJSON("rest/jugador/"+result[1]+"/torneo",function(data){
+        $.getJSON("../rest/jugador/"+result[1]+"/torneo",function(data){
             var table = "";
             for(var i=0;i<data.length;i++){
                 var obj = data[i];

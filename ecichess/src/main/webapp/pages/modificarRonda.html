@@ -148,7 +148,7 @@
     var idRonda = result[0].split("=")[1];
     var idTorneo = result[1].split("=")[1];
     window.onload = function(){
-        $.getJSON("rest/torneo/"+idTorneo+"/ronda/"+idRonda,function(data){
+        $.getJSON("../rest/torneo/"+idTorneo+"/ronda/"+idRonda,function(data){
             document.getElementById("numeroRonda").value=data.id.idrondas;
             document.getElementById("fecha").value=data.fecha;
         });
