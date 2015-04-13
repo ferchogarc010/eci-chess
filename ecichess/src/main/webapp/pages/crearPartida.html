@@ -93,31 +93,31 @@
                   <h3 class="box-title">Crear partida</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" onsubmit="return registrarJugador()">
+                <form role="form" onsubmit="return registrarPartida()">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="codigoFIDE">Código FIDE</label>
-                      <input type="number" class="form-control" id="codigoFIDE" placeholder="Código FIDE" required="true">
+                      <label for="codigoPartida">Código partida</label>
+                      <input type="number" class="form-control" id="codigoPartida" placeholder="Código partida" required="true">
                     </div>
                     <div class="form-group">
-                      <label for="apellidos">Apellidos</label>
-                      <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" required="true">
+                      <label for="codigoFIDE1">Código FIDE jugador 1</label>
+                      <input type="number" class="form-control" id="codigoFIDE1" placeholder="Código FIDE jugador 1" required="true">
                     </div>
                     <div class="form-group">
-                      <label for="nombres">Nombres</label>
-                      <input type="text" class="form-control" id="nombres" placeholder="Nombres" required="true">
+                      <label for="codigoFIDE2">Código FIDE jugador 2</label>
+                      <input type="number" class="form-control" id="codigoFIDE2" placeholder="Código FIDE jugador 2" required="true">
                     </div>
                     <div class="form-group">
-                      <label for="codigoNacional">Código nacional</label>
-                      <input type="number" class="form-control" id="codigoNacional" placeholder="Código nacional" required="true">
+                      <label for="torneo">Torneo</label>
+                      <select class="form-control" id="torneo"></select>
                     </div>
                     <div class="form-group">
-                      <label for="pais">País</label>
-                      <input type="text" class="form-control" id="pais" placeholder="País" required="true">
-                    </div>
-                    <div class="form-group">
-                      <label for="anioNacimiento">Año nacimiento</label>
-                      <input type="number" class="form-control" id="anioNacimiento" placeholder="Año nacimiento" required="true">
+                      <label for="resultado">Resultado</label>
+                      <select class="form-control" id="resultado">
+                          <option>1 - 0</option>
+                          <option>1/2 - 1/2</option>
+                          <option>0 - 1</option>
+                      </select>
                     </div>
                   </div><!-- /.box-body -->
 
@@ -161,6 +161,18 @@
     </script>
 
     <script type="text/javascript">
+      window.onLoad = function(){
+          var torneo = document.getElementById("torneo");
+          $.getJSON("https://eci-chess.herokuapp.com/rest/ronda/",function(data){
+            for(var i=0;i<data.length;i++){
+                var opt = document.createElement('option');
+                opt.innerHTML = data[i].torneos.nombre+" Ronda: "+data[i].id.idrondas;
+                opt.value = data[i].id.idrondas+" "+data[i].id.torneosIdtorneos;
+                torneo.appendChild(opt);
+            }
+          });
+      };  
+        
       function registrarJugador(){
         var codigoFIDE = document.getElementById("codigoFIDE").value;
         var apellidos = document.getElementById("apellidos").value;
