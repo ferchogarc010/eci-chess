@@ -174,13 +174,13 @@
     
     <script type="text/javascript">
         window.onload = function(){
-        $.getJSON("https://eci-chess.herokuapp.com/rest/jugador/",function(data){
+        $.getJSON("rest/jugador/",function(data){
             document.getElementById("jugadorHeader").innerHTML=data.length;
           });
-        $.getJSON("https://eci-chess.herokuapp.com/rest/torneo/",function(data){
+        $.getJSON("rest/torneo/",function(data){
             document.getElementById("torneoHeader").innerHTML=data.length;
           });
-        $.getJSON("https://eci-chess.herokuapp.com/rest/partida/",function(data){
+        $.getJSON("rest/partida/",function(data){
             document.getElementById("partidaHeader").innerHTML=data.length;
           });
       };
