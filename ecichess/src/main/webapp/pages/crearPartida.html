@@ -163,7 +163,7 @@
     <script type="text/javascript">
       window.onload = function(){
         var torneo = document.getElementById("torneo");
-        $.getJSON("https://eci-chess.herokuapp.com/rest/ronda/",function(data){
+        $.getJSON("../rest/ronda/",function(data){
             for(var i=0;i<data.length;i++){
                 var obj = data[i];
                 var opt = document.createElement("option");
